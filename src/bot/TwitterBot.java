@@ -1,4 +1,4 @@
-package github.nisrulz.bot;
+package bot;
 
 import java.util.List;
 import twitter4j.Query;
@@ -10,19 +10,16 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 
 @SuppressWarnings("unused")
-public class TwitterBot {
+public class TwitterBot{
 	static boolean debug = false;
 
 	// if something goes wrong, we might see a TwitterException
-	public static void main(String... args){
-		// send a tweet
+	public static void main(String[] args){
 		if(!debug){
 			try{
-				sendTweet("Bot test tweet. #Linux"); // Send Tweet
+				sendTweet("Testing 2"); // Send Tweet
 				getHomeTimeLine(); // Get tweets from Home Timeline
-
-				// Seach for tweets
-				// searchForTweets("@gdg_nd");
+				// searchForTweets("@gdg_nd"); // Seach for tweets
 			}
 			catch(TwitterException e){
 				e.printStackTrace();
@@ -33,13 +30,11 @@ public class TwitterBot {
 		}
 	}
 
-	private static Status sendTweet(String text) throws TwitterException {
+	private static Status sendTweet(String text) throws TwitterException{
 		// access the twitter API using your twitter4j.properties file
 		// The factory instance is re-useable and thread safe.
 		Twitter twitter = TwitterFactory.getSingleton();
-		Status status = null;
-
-		status = twitter.updateStatus(text);
+		Status status = twitter.updateStatus(text);
 		System.out.println("Successfully updated the status to [" + status.getText() + "].");
 
 		return status;
@@ -50,22 +45,20 @@ public class TwitterBot {
 		List<Status> statuses = null;
 		statuses = twitter.getHomeTimeline();
 
-		System.out.println("Showing home timeline.");
-
 		if(statuses != null){
 			for(Status status : statuses){
-				System.out.println(status.getUser().getName() + ":" + status.getText());
+				System.out.println(status.getUser().getName() + " : " + status.getText());
 			}
 		}
 	}
 
-	private static void searchForTweets(String query_text) throws TwitterException {
+	private static void searchForTweets(String query_text) throws TwitterException{
 		Twitter twitter = TwitterFactory.getSingleton();
 		Query query = new Query(query_text);
 		QueryResult result;
 		result = twitter.search(query);
 
-		for (Status status : result.getTweets()){
+		for(Status status : result.getTweets()){
 			System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
 		}
 	}

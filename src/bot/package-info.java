@@ -5,4 +5,4 @@
  * @author Nishant Srivastava
  *
  */
-package github.nisrulz.bot;
+package bot;
