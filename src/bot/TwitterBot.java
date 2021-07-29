@@ -17,7 +17,7 @@ public class TwitterBot{
 	public static void main(String[] args){
 		if(!debug){
 			try{
-				sendTweet("Testing 2"); // Send Tweet
+				//sendTweet("Testing 2"); // Send Tweet
 				getHomeTimeLine(); // Get tweets from Home Timeline
 				// searchForTweets("@gdg_nd"); // Seach for tweets
 			}
@@ -31,7 +31,6 @@ public class TwitterBot{
 	}
 
 	private static Status sendTweet(String text) throws TwitterException{
-		// access the twitter API using your twitter4j.properties file
 		// The factory instance is re-useable and thread safe.
 		Twitter twitter = TwitterFactory.getSingleton();
 		Status status = twitter.updateStatus(text);
@@ -59,7 +58,7 @@ public class TwitterBot{
 		result = twitter.search(query);
 
 		for(Status status : result.getTweets()){
-			System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+			System.out.println("@" + status.getUser().getScreenName() + " : " + status.getText());
 		}
 	}
 }
