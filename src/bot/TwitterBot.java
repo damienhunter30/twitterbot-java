@@ -13,13 +13,12 @@ import twitter4j.TwitterFactory;
 public class TwitterBot{
 	static boolean debug = false;
 
-	// if something goes wrong, we might see a TwitterException
 	public static void main(String[] args){
 		if(!debug){
 			try{
 				//sendTweet("Testing 2"); // Send Tweet
 				getHomeTimeLine(); // Get tweets from Home Timeline
-				// searchForTweets("@gdg_nd"); // Seach for tweets
+				//searchForTweets("@gdg_nd"); // Seach for tweets
 			}
 			catch(TwitterException e){
 				e.printStackTrace();
@@ -31,8 +30,7 @@ public class TwitterBot{
 	}
 
 	private static Status sendTweet(String text) throws TwitterException{
-		// The factory instance is re-useable and thread safe.
-		Twitter twitter = TwitterFactory.getSingleton();
+		Twitter twitter = TwitterFactory.getSingleton(); // The factory instance is re-useable and thread safe.
 		Status status = twitter.updateStatus(text);
 		System.out.println("Successfully updated the status to [" + status.getText() + "].");
 
